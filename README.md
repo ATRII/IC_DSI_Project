@@ -1,4 +1,19 @@
 # IC_DSI_Project
-team Data Hunter!!'s repository
-dataset: data scientist salary
-objectice: ?
+Team [Data Hunter!!]'s Repository
+
+## Dataset: 
+data scientist salary(.csv under Project_salary/data/)
+
+## Objectice: 
+?
+
+## Language:
+
+### -Python (primary, in Jupyter Noyebook)
+
+#### python package needed:
+
+not clearly
+
+### -HTML/CSS/Javascript(for visualiazation)
+
