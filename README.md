@@ -2,18 +2,21 @@
 Team [Data Hunter!!]'s Repository
 
 ## Dataset: 
-data scientist salary(.csv under Project_salary/data/)
+data scientist salary(.csv under Project_salary/data/, about 3MB)
 
-## Objectice: 
+## Objective: 
 ?
 
 ## Language:
 
-### -Python (primary, in Jupyter Noyebook)
+### -Python (primary, in Jupyter Notebook)
 
-#### python package needed:
+#### python packages needed:
 
-not clearly
+pandas; sklearn; pycaret; seaborn; matplotlib;
 
 ### -HTML/CSS/Javascript(for visualiazation)
 
+#### third-party js lib used:
+
+leftlet.js(under Project_salary/web/js/; Project_salary/web/css/)
