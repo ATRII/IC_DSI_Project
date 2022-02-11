@@ -1,7 +1,7 @@
+var color = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b'];
+var threshold = [0, 10, 20, 50, 100, 200, 500, 1000];
 function getColor(d) {
-    var color = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b'];
-    var threshold = [1000, 500, 200, 100, 50, 20, 10, 0];
-    for (var i = 0; i < 8; i++)
+    for (var i = threshold.length - 1; i > -1; i--)
         if (d >= threshold[i])
             return color[i];
 }
@@ -83,7 +83,26 @@ $.ajax({
         }).addTo(map);
     }
 })
+var legend = L.control({ position: 'bottomright' });
 
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < threshold.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(threshold[i] + 1) + '"></i> ' +
+            threshold[i] + (threshold[i + 1] ? '-' + threshold[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(map);
 
 
 // // Creating map options
@@ -115,11 +134,11 @@ $.ajax({
 //             lngField: 'longitude',  //经度
 //             valueField: 'count',    //热力点的值
 //             gradient: {
-//                 "0.99": "rgba(255,0,0,1)",
-//                 "0.9": "rgba(255,255,0,1)",
-//                 "0.8": "rgba(0,255,0,1)",
-//                 "0.5": "rgba(0,255,255,1)",
-//                 "0": "rgba(0,0,255,1)"
+//                 "0.99": "rgba(255,110,110,0.8)",
+//                 "0.9": "rgba(255,255,110,0.8)",
+//                 "0.8": "rgba(110,255,110,0.8)",
+//                 "0.5": "rgba(110,255,255,0.8)",
+//                 "0": "rgba(110,110,255,0.8)"
 //             }
 //         }
 //         var points = Array.from(Array(data.length), () => new Array(2));
