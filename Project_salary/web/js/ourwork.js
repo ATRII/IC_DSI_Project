@@ -1,5 +1,5 @@
 var color = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b'];
-var threshold = [0, 10, 20, 50, 100, 200, 500, 1000];
+var threshold = [0, 3, 6, 10, 20, 40, 80, 150];
 function getColor(d) {
     for (var i = threshold.length - 1; i > -1; i--)
         if (d >= threshold[i])
@@ -35,8 +35,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>US Population Density</h4>' + (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+    this._div.innerHTML = '<h4>US Post Distribution of Data Scientists</h4>' + (props ?
+        '<b>' + props.name + '</b><br />' + props.density + ' Data Science Post'
         : 'Hover over a state');
 };
 
@@ -73,7 +73,7 @@ function onEachFeature(feature, layer) {
     });
 }
 $.ajax({
-    url: "./json/demo2.json",//json文件位置，文件名
+    url: "./json/job.json",//json文件位置，文件名
     type: "GET",//请求方式为get
     dataType: "json", //返回数据格式为json
     success: function (data) {//请求成功完成后要执行的方法
@@ -89,8 +89,7 @@ var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),
-        labels = [];
+    var div = L.DomUtil.create('div', 'info legend');
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < threshold.length; i++) {
