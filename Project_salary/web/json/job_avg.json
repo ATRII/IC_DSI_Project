@@ -6,7 +6,7 @@
             "id": "01",
             "properties": {
                 "name": "Alabama",
-                "density": 8
+                "density": 57.9375
             },
             "geometry": {
                 "type": "Polygon",
@@ -4618,7 +4618,7 @@
             "id": "04",
             "properties": {
                 "name": "Arizona",
-                "density": 9
+                "density": 85.66666666666667
             },
             "geometry": {
                 "type": "Polygon",
@@ -4924,7 +4924,7 @@
             "id": "06",
             "properties": {
                 "name": "California",
-                "density": 152
+                "density": 123.51315789473684
             },
             "geometry": {
                 "type": "Polygon",
@@ -5311,7 +5311,7 @@
             "id": "08",
             "properties": {
                 "name": "Colorado",
-                "density": 11
+                "density": 86.18181818181819
             },
             "geometry": {
                 "type": "Polygon",
@@ -5390,7 +5390,7 @@
             "id": "09",
             "properties": {
                 "name": "Connecticut",
-                "density": 5
+                "density": 71.1
             },
             "geometry": {
                 "type": "Polygon",
@@ -5469,7 +5469,7 @@
             "id": "10",
             "properties": {
                 "name": "Delaware",
-                "density": 6
+                "density": 56.5
             },
             "geometry": {
                 "type": "Polygon",
@@ -5536,7 +5536,7 @@
             "id": "11",
             "properties": {
                 "name": "District of Columbia",
-                "density": 11
+                "density": 110.18181818181819
             },
             "geometry": {
                 "type": "Polygon",
@@ -5571,7 +5571,7 @@
             "id": "12",
             "properties": {
                 "name": "Florida",
-                "density": 16
+                "density": 77.625
             },
             "geometry": {
                 "type": "Polygon",
@@ -5898,7 +5898,7 @@
             "id": "13",
             "properties": {
                 "name": "Georgia",
-                "density": 6
+                "density": 80.66666666666667
             },
             "geometry": {
                 "type": "Polygon",
@@ -6346,7 +6346,7 @@
             "id": "16",
             "properties": {
                 "name": "Idaho",
-                "density": 2
+                "density": 56.25
             },
             "geometry": {
                 "type": "Polygon",
@@ -6625,7 +6625,7 @@
             "id": "17",
             "properties": {
                 "name": "Illinois",
-                "density": 40
+                "density": 116.6625
             },
             "geometry": {
                 "type": "Polygon",
@@ -6908,7 +6908,7 @@
             "id": "18",
             "properties": {
                 "name": "Indiana",
-                "density": 10
+                "density": 90.3
             },
             "geometry": {
                 "type": "Polygon",
@@ -7107,7 +7107,7 @@
             "id": "19",
             "properties": {
                 "name": "Iowa",
-                "density": 5
+                "density": 78.9
             },
             "geometry": {
                 "type": "Polygon",
@@ -7322,7 +7322,7 @@
             "id": "20",
             "properties": {
                 "name": "Kansas",
-                "density": 3
+                "density": 87.0
             },
             "geometry": {
                 "type": "Polygon",
@@ -7389,7 +7389,7 @@
             "id": "21",
             "properties": {
                 "name": "Kentucky",
-                "density": 6
+                "density": 97.0
             },
             "geometry": {
                 "type": "Polygon",
@@ -7704,7 +7704,7 @@
             "id": "22",
             "properties": {
                 "name": "Louisiana",
-                "density": 4
+                "density": 57.625
             },
             "geometry": {
                 "type": "Polygon",
@@ -8302,7 +8302,7 @@
             "id": "24",
             "properties": {
                 "name": "Maryland",
-                "density": 35
+                "density": 97.35714285714286
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -8579,7 +8579,7 @@
             "id": "25",
             "properties": {
                 "name": "Massachusetts",
-                "density": 103
+                "density": 107.49514563106796
             },
             "geometry": {
                 "type": "Polygon",
@@ -8734,7 +8734,7 @@
             "id": "26",
             "properties": {
                 "name": "Michigan",
-                "density": 6
+                "density": 100.25
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -9371,7 +9371,7 @@
             "id": "27",
             "properties": {
                 "name": "Minnesota",
-                "density": 2
+                "density": 85.5
             },
             "geometry": {
                 "type": "Polygon",
@@ -9917,7 +9917,7 @@
             "id": "29",
             "properties": {
                 "name": "Missouri",
-                "density": 9
+                "density": 84.72222222222223
             },
             "geometry": {
                 "type": "Polygon",
@@ -10367,7 +10367,7 @@
             "id": "31",
             "properties": {
                 "name": "Nebraska",
-                "density": 4
+                "density": 54.25
             },
             "geometry": {
                 "type": "Polygon",
@@ -10724,7 +10724,7 @@
             "id": "34",
             "properties": {
                 "name": "New Jersey",
-                "density": 17
+                "density": 104.55882352941177
             },
             "geometry": {
                 "type": "Polygon",
@@ -10867,7 +10867,7 @@
             "id": "35",
             "properties": {
                 "name": "New Mexico",
-                "density": 3
+                "density": 74.33333333333333
             },
             "geometry": {
                 "type": "Polygon",
@@ -10950,7 +10950,7 @@
             "id": "36",
             "properties": {
                 "name": "New York",
-                "density": 72
+                "density": 98.65277777777777
             },
             "geometry": {
                 "type": "Polygon",
@@ -11237,7 +11237,7 @@
             "id": "37",
             "properties": {
                 "name": "North Carolina",
-                "density": 21
+                "density": 98.45238095238095
             },
             "geometry": {
                 "type": "Polygon",
@@ -11575,7 +11575,7 @@
             "id": "39",
             "properties": {
                 "name": "Ohio",
-                "density": 14
+                "density": 87.57142857142857
             },
             "geometry": {
                 "type": "Polygon",
@@ -11973,7 +11973,7 @@
             "id": "41",
             "properties": {
                 "name": "Oregon",
-                "density": 4
+                "density": 92.125
             },
             "geometry": {
                 "type": "Polygon",
@@ -12212,7 +12212,7 @@
             "id": "42",
             "properties": {
                 "name": "Pennsylvania",
-                "density": 33
+                "density": 93.86363636363636
             },
             "geometry": {
                 "type": "Polygon",
@@ -12359,7 +12359,7 @@
             "id": "44",
             "properties": {
                 "name": "Rhode Island",
-                "density": 1
+                "density": 100.0
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -12440,7 +12440,7 @@
             "id": "45",
             "properties": {
                 "name": "South Carolina",
-                "density": 1
+                "density": 60.5
             },
             "geometry": {
                 "type": "Polygon",
@@ -12762,7 +12762,7 @@
             "id": "47",
             "properties": {
                 "name": "Tennessee",
-                "density": 13
+                "density": 89.26923076923077
             },
             "geometry": {
                 "type": "Polygon",
@@ -12949,7 +12949,7 @@
             "id": "48",
             "properties": {
                 "name": "Texas",
-                "density": 28
+                "density": 92.67857142857143
             },
             "geometry": {
                 "type": "Polygon",
@@ -13572,7 +13572,7 @@
             "id": "49",
             "properties": {
                 "name": "Utah",
-                "density": 10
+                "density": 94.15
             },
             "geometry": {
                 "type": "Polygon",
@@ -13762,7 +13762,7 @@
             "id": "51",
             "properties": {
                 "name": "Virginia",
-                "density": 41
+                "density": 95.6219512195122
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -14107,7 +14107,7 @@
             "id": "53",
             "properties": {
                 "name": "Washington",
-                "density": 21
+                "density": 93.19047619047619
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -14695,7 +14695,7 @@
             "id": "55",
             "properties": {
                 "name": "Wisconsin",
-                "density": 10
+                "density": 73.3
             },
             "geometry": {
                 "type": "Polygon",

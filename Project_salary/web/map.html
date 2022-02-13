@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
+<meta charset="UTF-8">
 <head>
     <title>Data Scientist Salary HeatMap</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style.css?version=7" />
     <script src="./js/leaflet.js"></script>
     <script src="./js/leaflet-heat.js"></script>
     <script src="./js/jquery-3.6.0.js"></script>
@@ -11,8 +11,19 @@
 
 <body>
     <div id="htmap"></div>
-    <script src="./js/ourwork.js"></script>
-    <link rel="stylesheet" href="./css/ex.css" />
+    <div class="buttonbar">
+        <button id="post" class="button" onclick="change(0)">
+            <span>Post</span>
+        </button>
+        <button id="avg" class="button" onclick="change(1)">
+            <span>Avg Salary</span>
+        </button>
+        <button id="post" class="button">
+            <span>post</span>
+        </button>
+    </div>
+    <script src="./js/ourwork.js?version=5"></script>
+    <link rel="stylesheet" href="./css/ex.css?version=4" />
 </body>
 
 </html>

@@ -1,23 +1,99 @@
-var color = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b'];
-var threshold = [0, 3, 6, 10, 20, 40, 80, 150];
-function getColor(d) {
-    for (var i = threshold.length - 1; i > -1; i--)
-        if (d >= threshold[i])
-            return color[i];
-}
-
+var color = [['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b']
+    , ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#990000']
+    , ['#ffffe5', '#f7fcb9', '#d9f0a3', '#addd8e', '#78c679', '#41ab5d', '#238443', '#005a32']];
+var threshold = [[0, 3, 6, 10, 20, 40, 80, 150], [0, 80, 85, 90, 95, 100, 105, 110], [0, 80, 85, 90, 95, 100, 105, 110]];
 var mapboxAccessToken = 'pk.eyJ1Ijoic2xpdGhlcnkiLCJhIjoiY2t6Y3Mxa3dpMnI5cjJvb2Z2N2Jsb2s0MCJ9.AzaxEHz6ytBZJNoQ231GWg';
 var map = L.map('htmap').setView([37.8, -96], 5);
+var info = [L.control(), L.control(), L.control()];
+var handle;
+var Data = new Array(3);
+var legend = [L.control({ position: 'bottomright' }), L.control({ position: 'bottomright' }), L.control({ position: 'bottomright' })];
+var num = 0;
+var url = ["../json/job.json", "../json/job_avg.json", ""];
+var title = ['<h4>US Post Distribution of Data Scientists</h4>', '<h4>US Average income distribution of Data Scientists</h4>', ''];
+var untex = ['', '$', ''];
+var unt = [' Data Science Post', 'K', ''];
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
-    id: 'mapbox/light-v9',
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(map);
-
+init();
+function roundFun(value, n) {
+    return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+}
+function deletelast() {
+    console.log(num);
+    map.removeLayer(hold);
+    info[num].remove();
+    legend[num].remove();
+}
+function draw() {
+    console.log(num);
+    hold = L.geoJson(Data[num], {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+    info[num].addTo(map);
+    legend[num].addTo(map);
+}
+function change(n) {
+    deletelast();
+    num = n;
+    draw();
+}
+function init() {
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+        id: 'mapbox/light-v9',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(map);
+    for (var I = 2; I >= 0; I--) {
+        num = I;
+        info[I].onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        info[I].update = function (props) {
+            this._div.innerHTML = title[num] + (props ?
+                ('<b>' + props.name + '</b><br />' + (props.density ?
+                    (untex[num] + roundFun(props.density, 2) + unt[num]) : 'no data'))
+                : 'Hover over a state');
+        };
+        legend[I].onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            for (var j = -1; j < threshold[num].length; j++) {
+                div.innerHTML += ((j == -1) ? ('<i style="background:' + getColor(0, 0) + '"></i> ' + 'no data<br>') :
+                    ('<i style="background:' + getColor(threshold[num][j] + 1, num) + '"></i> ' +
+                        threshold[num][j] + (threshold[num][j + 1] ? ('-' + threshold[num][j + 1] + '<br>') : '+')));
+            }
+            return div;
+        };
+        read(I);
+    }
+    info[0].addTo(map);
+    legend[0].addTo(map);
+    hold = L.geoJson(Data[0], {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+}
+function read(i) {
+    $.ajax({
+        url: url[i],//json文件位置，文件名
+        type: "GET",//请求方式为get
+        dataType: "json", //返回数据格式为json
+        success: function (data) {//请求成功完成后要执行的方法
+            Data[i] = data;
+        }
+    })
+}
+function getColor(d, num) {
+    if (d == 0) return 'rgba(255,255,255,0.7)'
+    for (var i = threshold[0].length - 1; i > -1; i--)
+        if (d >= threshold[num][i])
+            return color[num][i];
+}
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.density),
+        fillColor: getColor(feature.properties.density, num),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -25,22 +101,16 @@ function style(feature) {
         fillOpacity: 0.7
     };
 }
-var info = L.control();
-
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = '<h4>US Post Distribution of Data Scientists</h4>' + (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' Data Science Post'
-        : 'Hover over a state');
-};
-
-info.addTo(map);
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
 function highlightFeature(e) {
     var layer = e.target;
 
@@ -55,55 +125,12 @@ function highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
-    info.update(layer.feature.properties);
+    info[num].update(layer.feature.properties);
 }
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
-    info.update();
+    hold.resetStyle(e.target);
+    info[num].update();
 }
-var geojson;
-function zoomToFeature(e) {
-    map.fitBounds(e.target.getBounds());
-}
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-    });
-}
-$.ajax({
-    url: "./json/job.json",//json文件位置，文件名
-    type: "GET",//请求方式为get
-    dataType: "json", //返回数据格式为json
-    success: function (data) {//请求成功完成后要执行的方法
-        geojson = L.geoJson(data, {
-            style: style,
-            onEachFeature: onEachFeature
-        }).addTo(map);
-    }
-})
-var legend = L.control({ position: 'bottomright' });
-
-var legend = L.control({ position: 'bottomright' });
-
-legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend');
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < threshold.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(threshold[i] + 1) + '"></i> ' +
-            threshold[i] + (threshold[i + 1] ? '-' + threshold[i + 1] + '<br>' : '+');
-    }
-
-    return div;
-};
-
-legend.addTo(map);
-
-
 // // Creating map options
 // var mapOptions = {
 //     center: [39, -95],
@@ -133,11 +160,11 @@ legend.addTo(map);
 //             lngField: 'longitude',  //经度
 //             valueField: 'count',    //热力点的值
 //             gradient: {
-//                 "0.99": "rgba(255,110,110,0.8)",
-//                 "0.9": "rgba(255,255,110,0.8)",
-//                 "0.8": "rgba(110,255,110,0.8)",
-//                 "0.5": "rgba(110,255,255,0.8)",
-//                 "0": "rgba(110,110,255,0.8)"
+//                 "0.99": "rgba(255,120,120,0.8)",
+//                 "0.9": "rgba(255,255,120,0.8)",
+//                 "0.8": "rgba(120,255,120,0.8)",
+//                 "0.5": "rgba(120,255,255,0.8)",
+//                 "0": "rgba(120,120,255,0.8)"
 //             }
 //         }
 //         var points = Array.from(Array(data.length), () => new Array(2));
