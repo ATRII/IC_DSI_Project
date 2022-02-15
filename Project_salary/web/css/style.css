@@ -42,12 +42,12 @@ body {
 .button {
     border: 0px;
     padding: 0px;
-    margin: 10px 40px 0px 40px;
+    margin: 10px 120px 0px 120px;
     cursor: pointer;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     height: 40px;
-    width: 100px;
+    width: 200px;
     marker: none;
     background-color: #eee;
     transition-duration: 0.5s;

@@ -1,7 +1,7 @@
 var color = [['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#034e7b']
     , ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#990000']
     , ['#ffffe5', '#f7fcb9', '#d9f0a3', '#addd8e', '#78c679', '#41ab5d', '#238443', '#005a32']];
-var threshold = [[0, 3, 6, 10, 20, 40, 80, 150], [0, 80, 85, 90, 95, 100, 105, 110], [0, 80, 85, 90, 95, 100, 105, 110]];
+var threshold = [[0, 3, 6, 10, 20, 40, 80, 150], [0, 80, 85, 90, 95, 100, 105, 110], [0, 5, 10, 15, 20, 40, 60, 100]];
 var mapboxAccessToken = 'pk.eyJ1Ijoic2xpdGhlcnkiLCJhIjoiY2t6Y3Mxa3dpMnI5cjJvb2Z2N2Jsb2s0MCJ9.AzaxEHz6ytBZJNoQ231GWg';
 var map = L.map('htmap').setView([37.8, -96], 5);
 var info = [L.control(), L.control(), L.control()];
@@ -9,10 +9,10 @@ var handle;
 var Data = new Array(3);
 var legend = [L.control({ position: 'bottomright' }), L.control({ position: 'bottomright' }), L.control({ position: 'bottomright' })];
 var num = 0;
-var url = ["../json/job.json", "../json/job_avg.json", ""];
-var title = ['<h4>US Post Distribution of Data Scientists</h4>', '<h4>US Average income distribution of Data Scientists</h4>', ''];
+var url = ["../json/job.json", "../json/job_avg.json", "../json/company.json"];
+var title = ['<h4>US Post Distribution of Data Scientists</h4>', '<h4>US Average income distribution of Data Scientists</h4>', '<h4>Distribution of US Companies recruiting Data Scientists</h4>'];
 var untex = ['', '$', ''];
-var unt = [' Data Science Post', 'K', ''];
+var unt = [' Data Science Post', 'K', 'Company'];
 
 init();
 function roundFun(value, n) {

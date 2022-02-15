@@ -3,9 +3,11 @@ import json
 import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import re
+import seaborn as sns
 dir = "C:/Users/YH/Documents/Code/python/IC/IC_DSI_Project/Project_salary/web/json/demo2.json"
 wdir1 = "C:/Users/YH/Documents/Code/python/IC/IC_DSI_Project/Project_salary/web/json/job.json"
 wdir2 = "C:/Users/YH/Documents/Code/python/IC/IC_DSI_Project/Project_salary/web/json/job_avg.json"
+wdir3 = "C:/Users/YH/Documents/Code/python/IC/IC_DSI_Project/Project_salary/web/json/company.json"
 with open(dir, 'r', encoding='utf-8') as LoadF:
     LoadDict = json.load(LoadF)
 
@@ -45,35 +47,16 @@ df = pd.read_csv(DataDir)
 # # with open(wdir2, 'w', encoding='utf-8') as f:
 # #     json.dump(wdf2, f, ensure_ascii=True)
 
-
-def regex(row, symbol):
-    ans = 1
-    if re.search(symbol, row['Job Description']) is None:
-        ans = 0
-    return ans
-
-
-df["writing"] = df.apply(
-    regex, axis=1, args=("writ",))
-df["analysing"] = df.apply(
-    regex, axis=1, args=("analy",))
-df["communicating"] = df.apply(
-    regex, axis=1, args=("communicat",))
-df["collaborating"] = df.apply(
-    regex, axis=1, args=("(collaborat)|(teamwork)",))
-df["innovating"] = df.apply(
-    regex, axis=1, args=("(innovat)|(creat)",))
-df["experience"] = df.apply(
-    regex, axis=1, args=("experience",))
-df["troubleshooting"] = df.apply(
-    regex, axis=1, args=("(troubleshoot)|(problem-solving)",))
-df["presenting"] = df.apply(
-    regex, axis=1, args=("present",))
-df["managing"] = df.apply(
-    regex, axis=1, args=("management",))
-df3 = df.iloc[:, [19, 42, 43, 44, 45, 46, 47, 48, 49, 50]]
-pd.set_option('display.max_columns', 1000)
-pd.set_option('display.max_rows', 1000)
-pd.set_option('display.width', 1000)
-print(df3)
-# print(re.search("abc","ioabcde"))
+# df_cmloc = df['Location']
+# DfLocFull = [AbbMapping.get(i.split(', ')[1]) for i in df_cmloc]
+# # DfLocFull = [AbbMapping.get(i) for i in df_loc]
+# CompanyCnt = {}
+# for key, value in AbbMapping.items():
+#     CompanyCnt[value] = 0
+# for i in DfLocFull:
+#     CompanyCnt[i] = CompanyCnt.get(i, 0) + 1
+# wdf3 = LoadDict
+# for unit in wdf3["features"]:
+#     unit["properties"]["density"] = CompanyCnt[unit["properties"]["name"]]
+# with open(wdir3, 'w', encoding='utf-8') as f:
+#     json.dump(wdf3, f, ensure_ascii=True)
